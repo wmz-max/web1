@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>8_常用注册页面的表单实例（含验证）.html</title>
+
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+    <style type="text/css">
+        body{
+
+            background-repeat: no-repeat;
+            /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-attachment: fixed;  /*此条属性必须设置否则可能无效*/
+            /* 让背景图基于容器大小伸缩 */
+            background-size: cover;
+        }
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: url(Desert.jpg) no-repeat 0px 0px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            -moz-background-size: 100% 100%;
+        }
+        #user_reg{
+            font-family: 微软雅黑;
+            font-size: 40px;
+            text-align: center;
+            margin-top: 200px;
+        }
+        form{
+            width: 500px;					/*设置宽度，方便使其居中*/
+            margin: 40px auto auto auto;	/*上右下左*/
+            font-size: 25px;
+        }
+        input{
+            height: 30px;
+            width: 12em;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        /*input标签下的属性选择器*/
+        input[type="submit"],input[type="reset"]{
+            height: 25px;
+            width: 5em;
+            margin-top: 5px;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+
+<script type="text/javascript">
+    //onblur失去焦点事件，用户离开输入框时执行 JavaScript 代码：
+    //函数1：验证名字正则
+    function validate_username(username){
+        //console.log(username);
+        if(username !="" )
+        {
+            document.getElementById("test_user").innerHTML = "<font color='green' size='3px'>√名字格式正确</font>";
+        }else{
+            document.getElementById("test_user").innerHTML = "<font color='red' size='3px'>不能空</font>";
+        }
+    }
+    function validate_telephone(telephone){
+        //^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6-10}$
+        //测试密码：12345y
+        var telephoneReg=/^1(3|4|5|6|7|8|9)\d{9}$/;
+        if(telephone != "" && telephone.search(telephoneReg) != -1)
+        {
+            document.getElementById("test_tl").innerHTML = "<font color='green' size='3px'>√电话格式正确</font>";
+        }else{
+            document.getElementById("test_tl").innerHTML = "<font color='red' size='3px'>电话格式错误</font>";
+            alert("11位");
+        }
+    }
+    function validate_email(email){
+        //^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6-10}$
+        //测试密码：12345y
+        var emailReg=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        if(email != "" && email.search(emailReg) != -1)
+        {
+            document.getElementById("test_em").innerHTML = "<font color='green' size='3px'>√邮箱格式正确</font>";
+        }else{
+            document.getElementById("test_em").innerHTML = "<font color='red' size='3px'>邮箱格式错误</font>";
+            alert("请输入邮箱正确格式");
+        }
+    }
+    //函数2：验证电话是否符合要求：匹配11位密
+    function validate_password(password){
+        var passwordReg=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6}$/;
+        if(password != "" && password.search(passwordReg) != -1)
+        {
+            document.getElementById("test_pw").innerHTML = "<font color='green' size='3px'>√密码格式正确</font>";
+        }else{
+            document.getElementById("test_pw").innerHTML = "<font color='red' size='3px'>密码格式错误</font>";
+            alert("密码有6位，由数字和字母组成!");
+        }
+    }
+    function validate_address(address){
+        //console.log(username);
+        if(address !="" )
+        {
+            document.getElementById("test_ad").innerHTML = "<font color='green' size='3px'>√地址格式正确</font>";
+        }else{
+            document.getElementById("test_ad").innerHTML = "<font color='red' size='3px'>不能空</font>";
+        }
+    }
+    function validate_QQ(QQ){
+        var QQReg=/^\d{5,12}$/;
+        if(QQ != "" && QQ.search(QQReg) != -1)
+        {
+            document.getElementById("test_QQ").innerHTML = "<font color='green' size='3px'>√QQ格式正确</font>";
+        }else{
+            document.getElementById("test_QQ").innerHTML = "<font color='red' size='3px'>QQ格式错误</font>";
+            alert("请输入正确QQ号");
+        }
+    }
+</script>
+
+<body>
+<div id="user_reg">用户添加:</div>
+<form action="./servlet/RegisterServlet" method="post" name="form" >
+    <table>
+        <tr>
+            <td>请输入名字：</td>
+            <td><input type="text" id="username" name="username" placeholder="不能空" onblur="validate_username(this.value)"/></td>
+            <td id="test_user"></td>
+        </tr>
+        <tr>
+            <td>请输入电话：</td>
+            <td><input type="telephone" id="telephone" name="telephone" placeholder="11位数字" onblur="validate_telephone(this.value)"/></td>
+            <td id="test_tl"></td>
+        </tr>
+        <tr>
+            <td>请输入邮箱：</td>
+            <td><input type="email" id="email" name="email" placeholder="邮箱号码" onblur="validate_email(this.value)"/></td>
+            <td id="test_em"></td>
+        </tr>
+        <tr>
+            <td>请输入住址：</td>
+            <td><input type="address" id="address" name="address" placeholder="不能空" onblur="validate_address(this.value)"/></td>
+            <td id="test_ad"></td>
+        </tr>
+        <tr>
+            <td>请输入qq号：</td>
+            <td><input type="QQ" id="QQ" name="QQ" placeholder="QQ" onblur="validate_QQ(this.value)"/></td>
+            <td id="test_QQ"></td>
+        </tr>
+            <td></td>
+            <td ><input type="submit" id="submit_form" value="注册" onclick="return validate_form()"/>
+                <input type="reset" value="重置"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

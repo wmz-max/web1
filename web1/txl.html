@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>通讯录</title>
+    <style type="text/css">
+        body {
+            font-family: arial;
+        }
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: url(Desert.jpg) no-repeat 0px 0px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            -moz-background-size: 100% 100%;
+        }
+        table {
+            border: 1px solid #ccc;
+            width: 80%;
+            margin:0;
+            padding:0;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0 auto;
+        }
+
+        table tr {
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            table {
+                border: 0;
+            }
+
+            table thead {
+                display: none;
+            }
+
+            table tr {
+                margin-bottom: 10px;
+                display: block;
+                border-bottom: 2px solid #ddd;
+            }
+
+            table td {
+                display: block;
+                text-align: right;
+                font-size: 13px;
+                border-bottom: 1px dotted #ccc;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+
+            table td:before {
+                content: attr(data-label);
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+
+        .note{max-width: 80%; margin: 0 auto;}
+
+    </style>
+
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>邮箱</th>
+        <th>住址</th>
+        <th>QQ</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td data-label="姓名">张三</td>
+        <td data-label="电话">15640441111</td>
+        <td data-label="邮箱">1460779411@qq.com</td>
+        <td data-label="住址">北京邮电大学</td>
+        <td data-label="QQ">1460779411</td>
+    </tr>
+    <tr>
+        <td data-label="姓名">李四</td>
+        <td data-label="电话">15640442222</td>
+        <td data-label="邮箱">1460779422@qq.com</td>
+        <td data-label="住址">中国邮电大学</td>
+        <td data-label="QQ">1460779422</td>
+    </tr>
+    </tbody>
+
+    <div style="text-align: center;margin-top: 100px;">
+        <input type="submit" class="button" value="添加">
+        <input type="submit" class="button" value="编辑">
+        <input type="submit" class="button" value="删除">
+    </div>
+
+</table>
+
+</body>
+</html>
